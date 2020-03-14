@@ -29,3 +29,8 @@ li a:hover:not(.active) {
 .active {
     background-color: darkred;
 }
+
+footer {
+    padding: 20px;
+    text-align: center;
+}

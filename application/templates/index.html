@@ -19,7 +19,12 @@
             <td>{{ data["length"] }}</td>
             <td>{{ data["width"] }}</td>
             <td>
+            <form action="{{ url_for('edit') }}" method="get">
+                <input type="hidden" name="roomID" value="{{data['roomID']}}">
+                <input type="hidden" name="roomName" value="{{data['roomName']}}">
+                <input type="hidden" name="material" value="{{data['material']}}">
                 <button>Edit</button>
+            </form>
             </td>
         </tr>
         {% endfor %}

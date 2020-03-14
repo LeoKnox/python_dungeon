@@ -2,4 +2,26 @@
 {% block content %}
     <h1>Rooms listed here</h1>
     <p>Dungeon: <b>{{ dungeon }}</b></p>
+    <table>
+        <tr>
+            <th>Room ID</th>
+            <th>Room Name</th>
+            <th>Material</th>
+            <th>Length</th>
+            <th>Width</th>
+            <th>Function</th>
+        </tr>
+        {% for data in roomData %}
+        <tr>
+            <td>{{ data["roomID"] }}</td>
+            <td>{{ data["roomName"] }}</td>
+            <td>{{ data["material"] }}</td>
+            <td>{{ data["length"] }}</td>
+            <td>{{ data["width"] }}</td>
+            <td>
+                <button>Edit</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

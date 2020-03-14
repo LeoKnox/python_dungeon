@@ -1,6 +1,6 @@
 <ul>
-    <li class="active"><a href="{{ url_for('index') }}">Dungeon</a></li>
-    <li class=""><a href="{{ url_for('login') }}">Login</a></li>
-    <li><a href="{{ url_for('room') }}">Room</a></li>
-    <li><a href="{{ url_for('create') }}">Create</a></li>
+    <li class="{% if index %}active{% endif %}"><a href="{{ url_for('index') }}">Dungeon</a></li>
+    <li class="{% if login %}active{% endif %}"><a href="{{ url_for('login') }}">Login</a></li>
+    <li class="{% if room %}active{% endif %}"><a href="{{ url_for('room') }}">Room</a></li>
+    <li class="{% if create %}active{% endif %}"><a href="{{ url_for('create') }}">Create</a></li>
 </ul>

@@ -6,10 +6,16 @@
         <p>
             {{ form.character_id.label }}<br>
             {{ form.character_id(size=35 )}}
+            {% for error in form.character_id.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.character_name.label }}<br>
             {{ form.character_name(size=35) }}
+            {% for error in form.character_name.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.submit() }}

@@ -1,5 +1,5 @@
 from application import app, db
-from flask import render_template, request, json
+from flask import render_template, request, json, redirect, flash
 from application.models import Character, Room, Location
 from application.forms import LoginForm, CreateForm
 
@@ -16,6 +16,14 @@ def index(dungeon="First"):
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if request.form.get("character_name") == "Eveehi":
+            print('worked')
+            flash("You are ready for adventure!")
+            return redirect("/index")
+        else:
+            print('didnt work')
+            flash("Wrong, go create someone.")
     return render_template("login.html", form=form, login=True)
 
 @app.route("/room")

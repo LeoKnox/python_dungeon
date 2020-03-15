@@ -1,7 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
-    <form>
-        <p>Login:</p>
-        <p>Password:</p>
+    <form name="login" action="" method="post" nonvalidate>
+        {{ form.hidden_tag()}}
+
+        <p>
+            {{ form.character_id.label }}<br>
+            {{ form.character_id(size=35 )}}
+        </p>
+        <p>
+            {{ form.character_name.label }}<br>
+            {{ form.character_name(size=35) }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
     </form>
 {% endblock %}

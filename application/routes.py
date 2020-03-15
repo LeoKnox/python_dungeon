@@ -1,6 +1,7 @@
 from application import app, db
 from flask import render_template, request, json
 from application.models import Character, Room, Location
+from application.forms import LoginForm, CreateForm
 
 roomData = [{"roomID":"1111","roomName":"Entry","material":"Stone","length":5,"width":5},
     {"roomID":"1112","roomName":"Throne","material":"Gold","length":7,"width":9},
@@ -12,9 +13,10 @@ roomData = [{"roomID":"1111","roomName":"Entry","material":"Stone","length":5,"w
 def index(dungeon="First"):
     return render_template("index.html", dungeon=dungeon, roomData = roomData, index=True)
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
-    return render_template("login.html", login=True)
+    form = LoginForm()
+    return render_template("login.html", form=form, login=True)
 
 @app.route("/room")
 def room():

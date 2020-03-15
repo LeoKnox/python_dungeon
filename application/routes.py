@@ -17,12 +17,15 @@ def index(dungeon="First"):
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        if request.form.get("character_name") == "Eveehi":
-            print('worked')
-            flash("You are ready for adventure!")
+        character_name = form.character_name.data
+        character_id = form.character_id.data
+        character = Character.objects(character_name=character_name).first()
+        print (int(character_id) == character.character_id)
+        print (character_id)
+        if character and int(character_id) == character.character_id:
+            flash(f"{character.character_name}, You are ready for adventure!")
             return redirect("/index")
         else:
-            print('didnt work')
             flash("Wrong, go create someone.")
     return render_template("login.html", form=form, login=True)
 

@@ -1,5 +1,6 @@
 from application import app, db
 from flask import render_template, request, json
+from application.models import Character, Room, Location
 
 roomData = [{"roomID":"1111","roomName":"Entry","material":"Stone","length":5,"width":5},
     {"roomID":"1112","roomName":"Throne","material":"Gold","length":7,"width":9},
@@ -29,15 +30,6 @@ def edit():
     roomName = request.form.get('roomName')
     material = request.form.get('material')
     return render_template("edit.html", data={"roomID":roomID, "roomName":roomName, "material":material})
-
-class Character(db.Document):
-    character_id    =   db.IntField( unique=True )
-    character_name  =   db.StringField( max_length="50, unique=True")
-    character_class =   db.StringField( max_length="50" )
-    character_race  =   db.StringField( max_length="50" )
-    character_atk   =   db.IntField()
-    character_def   =   db.IntField()
-    character_health=   db.IntField()
 
 @app.route("/character")
 def character():

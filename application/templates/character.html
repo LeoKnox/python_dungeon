@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for character in characters %}
+    <dl>
+        <dt>Character ID: {{ character.character_id }}</dt>
+        <dd>Character Name: {{ character.character_name }}</dd>
+        <dd>Character Class: {{ character.character_class }}</dd>
+        <dd>Race: {{ character.character_race }}</dd>
+    </dl>
+    {% else %}
+        <p>No character go get some!</p>
+    {% endfor %}
+{% endblock %}

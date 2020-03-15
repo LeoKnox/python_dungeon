@@ -29,3 +29,21 @@ def edit():
     roomName = request.form.get('roomName')
     material = request.form.get('material')
     return render_template("edit.html", data={"roomID":roomID, "roomName":roomName, "material":material})
+
+class Character(db.Document):
+    character_id    =   db.IntField( unique=True )
+    character_name  =   db.StringField( max_length="50, unique=True")
+    character_class =   db.StringField( max_length="50" )
+    character_race  =   db.StringField( max_length="50" )
+    character_atk   =   db.IntField()
+    character_def   =   db.IntField()
+    character_health=   db.IntField()
+
+@app.route("/character")
+def character():
+    #Character(character_id=1, character_name="Aelien", character_class="Fighter", race="Human",
+    #atk=10, def=15, health=35).save()
+    #Character(character_id=2, character_name="Eveehi", character_class="Rogue", race="Elf",
+    #atk=14, def=12, health=20).save()
+    characters = Character.objects.all()
+    return render_template("character.html", characters=characters)

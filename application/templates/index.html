@@ -13,11 +13,11 @@
         </tr>
         {% for data in roomData %}
         <tr>
-            <td>{{ data["roomID"] }}</td>
-            <td>{{ data["roomName"] }}</td>
-            <td>{{ data["material"] }}</td>
-            <td>{{ data["length"] }}</td>
-            <td>{{ data["width"] }}</td>
+            <td>{{ data["room_id"] }}</td>
+            <td>{{ data["room_name"] }}</td>
+            <td>{{ data["room_type"] }}</td>
+            <td>{{ data["room_length"] }}</td>
+            <td>{{ data["room_width"] }}</td>
             <td>
             <form action="{{ url_for('edit') }}" method="get">
                 <input type="hidden" name="roomID" value="{{data['roomID']}}">

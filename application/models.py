@@ -11,7 +11,7 @@ class Character(db.Document):
     character_health=   db.IntField()
 
 class Room(db.Document):
-    room_id         =   db.StringField( max_length=10, unique=True )
+    room_id         =   db.IntField( unique=True )
     room_name       =   db.StringField( max_length=50, unique=True )
     room_type       =   db.StringField( max_length=50 )
     room_length     =   db.IntField()
@@ -19,4 +19,4 @@ class Room(db.Document):
 
 class Location(db.Document):
     character_id    =   db.IntField()
-    room_id         =   db.StringField( max_length=10 )
+    room_id         =   db.IntField()

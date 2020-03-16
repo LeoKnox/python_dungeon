@@ -11,7 +11,9 @@ roomData = [{"roomID":"1111","roomName":"Entry","material":"Stone","length":5,"w
 @app.route("/index")
 @app.route("/index/<dungeon>")
 def index(dungeon="First"):
-    return render_template("index.html", dungeon=dungeon, roomData = roomData, index=True)
+    rooms = Room.objects.all()
+    print(rooms[0].room_name)
+    return render_template("index.html", dungeon=dungeon, roomData = rooms, index=True)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():

@@ -41,10 +41,21 @@ def create():
 
 @app.route("/edit", methods=["GET","POST"])
 def edit():
-    roomID = request.form.get('roomID')
-    roomName = request.form.get('roomName')
-    material = request.form.get('material')
-    return render_template("edit.html", data={"roomID":roomID, "roomName":roomName, "material":material})
+    room_id = request.form.get('room_id')
+    room_name = request.form.get('room_name')
+    room_material = request.form.get('room_material')
+    character_id = 1
+    print(room_id)
+    if room_id:
+        if Room.object(room_id=room_id, character_id=character_id):
+            flash(f"Already roomed {character_name}")
+        else:
+            Location(character_id=character_id,room_id=room_id)
+            flash(f"You have roomed {character_name}")
+
+    rooms = None
+
+    return render_template("edit.html", data=rooms, title="Rooms")
 
 @app.route("/character")
 def character():

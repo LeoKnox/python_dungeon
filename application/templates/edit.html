@@ -1,11 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
-    <form>
-        <p>Name: {{ data.roomID }}</p>
-        <p>Class: {{ data.roomName }}</p>
-        <p>Race: {{ data.material }}</p>
-        <p>Atk:</p>
-        <p>Def:</p>
-        <p>Health:</p>
-    </form>
+<h1>{{ title }}</h1>
+{% if not rooms %}
+    <h1>No you have no rooms set</h1>
+{% else %}
+    <h1>Available rooms</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Room ID</th>
+            <th>Room Name</th>
+            <th>Room Material</th>
+            <th>Length</th>
+            <th>Width</th>
+        </tr>
+        </thead>
+        {% for room in rooms %}
+        <tr>
+            <td>{{ room["room_id"] }}</td>
+            <td>{{ room["room_name"] }}</td>
+            <td>{{ room["room_type"] }}</td>
+            <td>{{ room["room_length"] }}</td>
+            <td>{{ room["room_width"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
 {% endblock %}

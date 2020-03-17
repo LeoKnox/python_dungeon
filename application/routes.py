@@ -45,7 +45,7 @@ def edit():
     room_name = request.form.get('room_name')
     room_material = request.form.get('room_material')
     character_id = 1
-    print(room_id)
+    
     if room_id:
         if Room.object(room_id=room_id, character_id=character_id):
             flash(f"Already roomed {character_name}")
@@ -53,7 +53,34 @@ def edit():
             Location(character_id=character_id,room_id=room_id)
             flash(f"You have roomed {character_name}")
 
-    rooms = None
+    rooms = list( Character.objects.aggregate(*[
+            {
+                '$lookup': {
+                    'from': 'location', 
+                    'localField': 'character_id', 
+                    'foreignField': 'character_id', 
+                    'as': 'r1'
+                }
+            }, {
+                '$unwind': {
+                    'path': '$r1', 
+                    'includeArrayIndex': 'r1.character_id', 
+                    'preserveNullAndEmptyArrays': False
+                }
+            }, {
+                '$lookup': {
+                    'from': 'room', 
+                    'localField': 'r1.character_id', 
+                    'foreignField': 'character_id', 
+                    'as': 'r2'
+                }
+            }, {
+                '$unwind': {
+                    'path': '$r2', 
+                    'preserveNullAndEmptyArrays': False
+                }
+            }
+        ]))
 
     return render_template("edit.html", data=rooms, title="Rooms")
 
